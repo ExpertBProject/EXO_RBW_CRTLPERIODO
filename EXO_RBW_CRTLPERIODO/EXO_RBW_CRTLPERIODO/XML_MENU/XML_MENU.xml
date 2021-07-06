@@ -1,0 +1,9 @@
+﻿<Application>
+  <Menus>
+    <action type="add">
+      <Menu Checked="0" Enabled="1" FatherUID="9201" Image="" String="Control de período" Type="2" UniqueID="EXO-MnCTRLPER"></Menu>
+      <Menu Checked="0" Enabled="1" FatherUID="EXO-MnCTRLPER" Image="" String="Act. de períodos de control" Type="1" UniqueID="EXO-MnACTCP"></Menu>
+    </action>
+  </Menus>
+</Application>
+

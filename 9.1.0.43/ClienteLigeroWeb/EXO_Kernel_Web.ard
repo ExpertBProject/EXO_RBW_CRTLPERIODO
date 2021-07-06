@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AddOnRegData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SlientInstallation="No" SlientUpgrade="No" Partnernmsp="EXO" SchemaVersion="3.0" Type="" MultipleVersion="true" OnDemand="" OnPremise="" ExtName="EXO_Kernel_Web" ExtVersion="9.1.0.43" Contdata="Expert One" Partner="Expert One CST" DBType="Both" ClientType="A">
+  <Validity>
+    <SBOCompatibility>
+      <Version From="910.100.00" To="930.999.99" />
+    </SBOCompatibility>
+  </Validity>
+  <Configuration>
+    <Repository>
+      <Properties />
+    </Repository>
+    <Deployment>
+      <Properties />
+    </Deployment>
+    <Assignment>
+      <Properties />
+    </Assignment>
+  </Configuration>
+  <Addons>
+    <Addon Name="EXO_Kernel_Web" Group="" ForceFlag="" Visible="" AutoAssign="" SelfUpgrd="">
+      <x86 AddonExe="C:\ExpertOne\9.x\EXO_Kernel_9.1.0.43\ClienteLigeroWeb\x86Client\EXO_AddOn.exe" AddonSig="18BB0960D0643BC6BC3F8472AF8487E6" ExeDir="X86Client">
+        <Installation>
+          <Files>
+            <File FileName="DocumentacionKernel.chm">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe.config">
+              <Actions />
+            </File>
+            <File FileName="EXO_BasicDLL.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CleanCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CryptorLib.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_DIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Generales.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Log.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_SQLIndependiente.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_UIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbobsCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbouiCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Edm.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.OData.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Services.Client.dll">
+              <Actions />
+            </File>
+            <File FileName="Sap.Data.Hana.v4.5.dll">
+              <Actions />
+            </File>
+            <File FileName="System.Spatial.dll">
+              <Actions />
+            </File>
+          </Files>
+        </Installation>
+        <Uninstallation>
+          <Files>
+            <File FileName="DocumentacionKernel.chm">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe.config">
+              <Actions />
+            </File>
+            <File FileName="EXO_BasicDLL.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CleanCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CryptorLib.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_DIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Generales.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Log.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_SQLIndependiente.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_UIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbobsCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbouiCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Edm.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.OData.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Services.Client.dll">
+              <Actions />
+            </File>
+            <File FileName="Sap.Data.Hana.v4.5.dll">
+              <Actions />
+            </File>
+            <File FileName="System.Spatial.dll">
+              <Actions />
+            </File>
+          </Files>
+        </Uninstallation>
+      </x86>
+      <x64 AddonExe="C:\ExpertOne\9.x\EXO_Kernel_9.1.0.43\ClienteLigeroWeb\x64Client\EXO_AddOn.exe" AddonSig="84720D2FD36D31FE94690CD8959A4C93" ExeDir="X64Client">
+        <Installation>
+          <Files>
+            <File FileName="DocumentacionKernel.chm">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe.config">
+              <Actions />
+            </File>
+            <File FileName="EXO_BasicDLL.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CleanCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CryptorLib.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_DIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Generales.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Log.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_SQLIndependiente.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_UIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbobsCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbouiCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Edm.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.OData.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Services.Client.dll">
+              <Actions />
+            </File>
+            <File FileName="Sap.Data.Hana.v4.5.dll">
+              <Actions />
+            </File>
+            <File FileName="System.Spatial.dll">
+              <Actions />
+            </File>
+          </Files>
+        </Installation>
+        <Uninstallation>
+          <Files>
+            <File FileName="DocumentacionKernel.chm">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe">
+              <Actions />
+            </File>
+            <File FileName="EXO_AddOn.exe.config">
+              <Actions />
+            </File>
+            <File FileName="EXO_BasicDLL.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CleanCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_CryptorLib.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_DIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Generales.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_Log.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_SQLIndependiente.dll">
+              <Actions />
+            </File>
+            <File FileName="EXO_UIAPI.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbobsCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Interop.SAPbouiCOM.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Edm.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.OData.dll">
+              <Actions />
+            </File>
+            <File FileName="Microsoft.Data.Services.Client.dll">
+              <Actions />
+            </File>
+            <File FileName="Sap.Data.Hana.v4.5.dll">
+              <Actions />
+            </File>
+            <File FileName="System.Spatial.dll">
+              <Actions />
+            </File>
+          </Files>
+        </Uninstallation>
+      </x64>
+    </Addon>
+  </Addons>
+  <XApps>
+    <XApp Name="" Path="" FileName="" />
+  </XApps>
+  <UDQs>
+    <UDQ udqname="">
+      <Hana FileName="" />
+    </UDQ>
+  </UDQs>
+</AddOnRegData>
