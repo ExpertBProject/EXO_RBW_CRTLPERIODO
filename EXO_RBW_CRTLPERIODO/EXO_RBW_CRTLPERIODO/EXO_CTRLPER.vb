@@ -205,6 +205,7 @@ Public Class EXO_CTRLPER
         Dim sGrupo As String = ""
         EventHandler_VALIDATE_Before = False
         Dim sTable As String = ""
+        Dim dControl As Double = 2 : Dim dValor As Double = 0 'Controlamos que todos los valores sean menor que 2
         Try
             oForm = objGlobal.SBOApp.Forms.Item(pVal.FormUID)
             If pVal.ItemUID = "0_U_G" Then 'And pVal.ColUID = "C_0_1" Then
@@ -215,6 +216,31 @@ Public Class EXO_CTRLPER
                         CType(CType(oForm.Items.Item("0_U_G").Specific, SAPbouiCOM.Matrix).Columns.Item("C_0_1").Cells.Item(pVal.Row).Specific, SAPbouiCOM.EditText).Active = True
                         Exit Function
                     End If
+                End If
+                If pVal.ColUID <> "C_0_1" Then
+                    For M = 2 To 13
+                        dValor = EXO_GLOBALES.DblTextToNumber(objGlobal, CType(CType(oForm.Items.Item("0_U_G").Specific, SAPbouiCOM.Matrix).Columns.Item("C_0_" & M).Cells.Item(pVal.Row).Specific, SAPbouiCOM.EditText).Value.ToString)
+                        If dValor > dControl Then
+                            Dim sMes As String = ""
+                            Select Case M
+                                Case 2 : sMes = "enero"
+                                Case 3 : sMes = "febrero"
+                                Case 4 : sMes = "marzo"
+                                Case 5 : sMes = "abril"
+                                Case 6 : sMes = "mayo"
+                                Case 7 : sMes = "junio"
+                                Case 8 : sMes = "julio"
+                                Case 9 : sMes = "agosto"
+                                Case 10 : sMes = "septiembre"
+                                Case 11 : sMes = "octubre"
+                                Case 12 : sMes = "noviembre"
+                                Case 13 : sMes = "diciembre"
+                            End Select
+                            objGlobal.SBOApp.StatusBar.SetText("El valor máximo es 2. Por favor corrija el valor del mes de " & sMes & ".", BoMessageTime.bmt_Short, BoStatusBarMessageType.smt_Error)
+                            objGlobal.SBOApp.MessageBox("El valor máximo es 2. Por favor corrija el valor del mes de " & sMes & ".")
+                            Exit Function
+                        End If
+                    Next
                 End If
             End If
 
@@ -309,7 +335,8 @@ Public Class EXO_CTRLPER
 
                 'Hemos recorrido el registro, y comprobamos el almacén
                 If iGrupoTotal >= 2 Then
-                    objGlobal.SBOApp.StatusBar.SetText("No es posible seleccionar el CeCo " & sGrupo & " varias veces", BoMessageTime.bmt_Short, BoStatusBarMessageType.smt_Error)
+                    objGlobal.SBOApp.StatusBar.SetText("No es posible seleccionar el CeCo " & sGrupo & " varias veces.", BoMessageTime.bmt_Short, BoStatusBarMessageType.smt_Error)
+                    objGlobal.SBOApp.MessageBox("No es posible seleccionar el CeCo " & sGrupo & " varias veces.")
                     Exit Function
                 End If
             Next
