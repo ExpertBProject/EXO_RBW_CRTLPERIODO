@@ -166,7 +166,8 @@ Public Class EXO_CTRLPER
             If oForm.Visible = True Then
                 oForm.Freeze(True)
                 CargaCombos(oForm)
-                sSQL = "SELECT ""PrcCode"" FROM ""OPRC"" WHERE ""DimCode""=1 and ""Active""='Y' Order by ""PrcCode"" "
+                'sSQL = "SELECT ""PrcCode"" FROM ""OPRC"" WHERE ""DimCode""=1 and ""Active""='Y' Order by ""PrcCode"" "
+                sSQL = "SELECT ""PrcCode"" FROM ""OPRC"" WHERE ""Active""='Y' Order by ""PrcCode"" "
                 oRs.DoQuery(sSQL)
                 oConds = New SAPbouiCOM.Conditions
                 'oCond = oConds.Add
