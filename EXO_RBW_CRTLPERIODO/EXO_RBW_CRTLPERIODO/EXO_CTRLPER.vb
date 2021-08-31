@@ -166,8 +166,10 @@ Public Class EXO_CTRLPER
             If oForm.Visible = True Then
                 oForm.Freeze(True)
                 CargaCombos(oForm)
+#Region "Línea de producción"
                 'sSQL = "SELECT ""PrcCode"" FROM ""OPRC"" WHERE ""DimCode""=1 and ""Active""='Y' Order by ""PrcCode"" "
-                sSQL = "SELECT ""PrcCode"" FROM ""OPRC"" WHERE ""Active""='Y' Order by ""PrcCode"" "
+                'sSQL = "SELECT ""PrcCode"" FROM ""OPRC"" WHERE ""Active""='Y' Order by ""PrcCode"" "
+                sSQL = "SELECT DISTINCT ifnull(""AttriTxt1"",'') ""PrcCode""  from ""ITM13"" "
                 oRs.DoQuery(sSQL)
                 oConds = New SAPbouiCOM.Conditions
                 'oCond = oConds.Add
@@ -185,6 +187,8 @@ Public Class EXO_CTRLPER
                 Next
                 If oConds.Count > 0 Then oCond.Relationship = SAPbouiCOM.BoConditionRelationship.cr_NONE
                 oForm.ChooseFromLists.Item("CFLC").SetConditions(oConds)
+#End Region
+
             End If
 
             EventHandler_FORM_VISIBLE = True
@@ -218,31 +222,31 @@ Public Class EXO_CTRLPER
                         Exit Function
                     End If
                 End If
-                If pVal.ColUID <> "C_0_1" Then
-                    For M = 2 To 13
-                        dValor = EXO_GLOBALES.DblTextToNumber(objGlobal, CType(CType(oForm.Items.Item("0_U_G").Specific, SAPbouiCOM.Matrix).Columns.Item("C_0_" & M).Cells.Item(pVal.Row).Specific, SAPbouiCOM.EditText).Value.ToString)
-                        If dValor > dControl Then
-                            Dim sMes As String = ""
-                            Select Case M
-                                Case 2 : sMes = "enero"
-                                Case 3 : sMes = "febrero"
-                                Case 4 : sMes = "marzo"
-                                Case 5 : sMes = "abril"
-                                Case 6 : sMes = "mayo"
-                                Case 7 : sMes = "junio"
-                                Case 8 : sMes = "julio"
-                                Case 9 : sMes = "agosto"
-                                Case 10 : sMes = "septiembre"
-                                Case 11 : sMes = "octubre"
-                                Case 12 : sMes = "noviembre"
-                                Case 13 : sMes = "diciembre"
-                            End Select
-                            objGlobal.SBOApp.StatusBar.SetText("El valor máximo es 2. Por favor corrija el valor del mes de " & sMes & ".", BoMessageTime.bmt_Short, BoStatusBarMessageType.smt_Error)
-                            objGlobal.SBOApp.MessageBox("El valor máximo es 2. Por favor corrija el valor del mes de " & sMes & ".")
-                            Exit Function
-                        End If
-                    Next
-                End If
+                'If pVal.ColUID <> "C_0_1" Then
+                '    For M = 2 To 13
+                '        dValor = EXO_GLOBALES.DblTextToNumber(objGlobal, CType(CType(oForm.Items.Item("0_U_G").Specific, SAPbouiCOM.Matrix).Columns.Item("C_0_" & M).Cells.Item(pVal.Row).Specific, SAPbouiCOM.EditText).Value.ToString)
+                '        If dValor > dControl Then
+                '            Dim sMes As String = ""
+                '            Select Case M
+                '                Case 2 : sMes = "enero"
+                '                Case 3 : sMes = "febrero"
+                '                Case 4 : sMes = "marzo"
+                '                Case 5 : sMes = "abril"
+                '                Case 6 : sMes = "mayo"
+                '                Case 7 : sMes = "junio"
+                '                Case 8 : sMes = "julio"
+                '                Case 9 : sMes = "agosto"
+                '                Case 10 : sMes = "septiembre"
+                '                Case 11 : sMes = "octubre"
+                '                Case 12 : sMes = "noviembre"
+                '                Case 13 : sMes = "diciembre"
+                '            End Select
+                '            objGlobal.SBOApp.StatusBar.SetText("El valor máximo es 2. Por favor corrija el valor del mes de " & sMes & ".", BoMessageTime.bmt_Short, BoStatusBarMessageType.smt_Error)
+                '            objGlobal.SBOApp.MessageBox("El valor máximo es 2. Por favor corrija el valor del mes de " & sMes & ".")
+                '            Exit Function
+                '        End If
+                '    Next
+                'End If
             End If
 
 
@@ -266,7 +270,8 @@ Public Class EXO_CTRLPER
             oForm.Freeze(True)
 
             'Año
-            sSQL = " Select ""Indicator"",""Indicator"" FROM ""OPID"" WHERE ""Indicator""<>'Valor de p' "
+            'sSQL = " Select ""Indicator"",""Indicator"" FROM ""OPID"" WHERE ""Indicator""<>'Valor de p' "
+            sSQL = " Select ""Code"",""Code"" FROM ""OFPR"" WHERE ""PeriodStat""='N' "
             oRs.DoQuery(sSQL)
             If oRs.RecordCount > 0 Then
                 objGlobal.funcionesUI.cargaCombo(CType(oForm.Items.Item("0_U_E").Specific, SAPbouiCOM.ComboBox).ValidValues, sSQL)
@@ -336,8 +341,8 @@ Public Class EXO_CTRLPER
 
                 'Hemos recorrido el registro, y comprobamos el almacén
                 If iGrupoTotal >= 2 Then
-                    objGlobal.SBOApp.StatusBar.SetText("No es posible seleccionar el CeCo " & sGrupo & " varias veces.", BoMessageTime.bmt_Short, BoStatusBarMessageType.smt_Error)
-                    objGlobal.SBOApp.MessageBox("No es posible seleccionar el CeCo " & sGrupo & " varias veces.")
+                    objGlobal.SBOApp.StatusBar.SetText("No es posible seleccionar " & sGrupo & " varias veces.", BoMessageTime.bmt_Short, BoStatusBarMessageType.smt_Error)
+                    objGlobal.SBOApp.MessageBox("No es posible seleccionar  " & sGrupo & " varias veces.")
                     Exit Function
                 End If
             Next
@@ -405,19 +410,22 @@ Public Class EXO_CTRLPER
         Dim oRsActivo As SAPbobsCOM.Recordset = CType(objGlobal.compañia.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset), SAPbobsCOM.Recordset)
 
         Dim vItem As SAPbobsCOM.Items = Nothing
-        Dim sCeCo As String = "" : Dim sAnno As String = ""
+        Dim sLProd As String = "" : Dim sAnno As String = "" : Dim sMes As String = ""
         FORM_DATA_ADDUPDATE = False
         Try
             sControl = oForm.DataSources.DBDataSources.Item("@EXO_CTRLPER").GetValue("Code", 0).ToUpper
 
             sSQL = "SELECT * FROM ""@EXO_CTRLPERL"" "
-            sSQL &= " WHERE ""Code""=" & sControl & ";"
+            sSQL &= " WHERE ""Code""='" & sControl & "'"
             oRs.DoQuery(sSQL)
             If oRs.RecordCount > 0 Then
                 For i = 0 To oRs.RecordCount - 1
-                    sCeCo = oRs.Fields.Item("U_EXO_CECO").Value.ToString
+                    sLProd = oRs.Fields.Item("U_EXO_LPROD").Value.ToString
                     sAnno = oRs.Fields.Item("Code").Value.ToString
-                    sSQL = " SELECT ""ItemCode"" FROM ""ITM6"" WHERE ""OcrCode""='" & sCeCo & "' and (ifnull(""ValidTo"",'')='' or year(""ValidTo"")='" & sAnno & "' ) "
+                    Dim sDatos As String() = sAnno.Split(Chr(Asc("-")))
+                    sAnno = sDatos(0)
+                    sMes = sDatos(1)
+                    sSQL = " SELECT ""ItemCode"" FROM ""ITM13"" WHERE ""AttriTxt1""='" & sLProd & "' " 'and (ifnull(""ValidTo"",'')='' or year(""ValidTo"")='" & sAnno & "' ) "
                     oRsActivo.DoQuery(sSQL)
                     For a = 0 To oRsActivo.RecordCount - 1
                         vItem = CType(objGlobal.compañia.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oItems), SAPbobsCOM.Items)
@@ -431,25 +439,14 @@ Public Class EXO_CTRLPER
                                 vItem.PeriodControls.SetCurrentLine(p)
                                 If vItem.PeriodControls.FiscalYear = sAnno Then
                                     Dim dFactor As Double = 1
-                                    Select Case vItem.PeriodControls.SubPeriod.ToString.Trim
-                                        Case "1" : dFactor = oRs.Fields.Item("U_EXO_ENE").Value
-                                        Case "2" : dFactor = oRs.Fields.Item("U_EXO_FEB").Value
-                                        Case "3" : dFactor = oRs.Fields.Item("U_EXO_MAR").Value
-                                        Case "4" : dFactor = oRs.Fields.Item("U_EXO_ABR").Value
-                                        Case "5" : dFactor = oRs.Fields.Item("U_EXO_MAY").Value
-                                        Case "6" : dFactor = oRs.Fields.Item("U_EXO_JUN").Value
-                                        Case "7" : dFactor = oRs.Fields.Item("U_EXO_JUL").Value
-                                        Case "8" : dFactor = oRs.Fields.Item("U_EXO_AGO").Value
-                                        Case "9" : dFactor = oRs.Fields.Item("U_EXO_SEP").Value
-                                        Case "10" : dFactor = oRs.Fields.Item("U_EXO_OCT").Value
-                                        Case "11" : dFactor = oRs.Fields.Item("U_EXO_NOV").Value
-                                        Case "12" : dFactor = oRs.Fields.Item("U_EXO_DIC").Value
-                                    End Select
-                                    vItem.PeriodControls.Factor = dFactor
-                                    If dFactor = 0 Then
-                                        vItem.PeriodControls.DepreciationStatus = SAPbobsCOM.BoYesNoEnum.tNO
-                                    Else
-                                        vItem.PeriodControls.DepreciationStatus = SAPbobsCOM.BoYesNoEnum.tYES
+                                    If sMes = vItem.PeriodControls.SubPeriod.ToString("00").Trim Then
+                                        dFactor = oRs.Fields.Item("U_EXO_FACTOR").Value
+                                        vItem.PeriodControls.Factor = dFactor
+                                        If dFactor = 0 Then
+                                            vItem.PeriodControls.DepreciationStatus = SAPbobsCOM.BoYesNoEnum.tNO
+                                        Else
+                                            vItem.PeriodControls.DepreciationStatus = SAPbobsCOM.BoYesNoEnum.tYES
+                                        End If
                                     End If
                                 End If
                             Next
