@@ -425,14 +425,16 @@ Public Class EXO_CTRLPER
                     Dim sDatos As String() = sAnno.Split(Chr(Asc("-")))
                     sAnno = sDatos(0)
                     sMes = sDatos(1)
-                    sSQL = " SELECT ""ItemCode"" FROM ""ITM13"" WHERE ""AttriTxt1""='" & sLProd & "' " 'and (ifnull(""ValidTo"",'')='' or year(""ValidTo"")='" & sAnno & "' ) "
+                    sSQL = " SELECT ""ITM13"".""ItemCode"" FROM ""ITM13"" INNER JOIN ""OITM"" ON ""ITM13"".""ItemCode""=""OITM"".""ItemCode"" "
+                    sSQL &= " WHERE ""OITM"".""validFor""='Y' and ""AttriTxt1""='" & sLProd & "' " 'and (ifnull(""ValidTo"",'')='' or year(""ValidTo"")='" & sAnno & "' ) "
                     oRsActivo.DoQuery(sSQL)
                     For a = 0 To oRsActivo.RecordCount - 1
                         vItem = CType(objGlobal.compañia.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oItems), SAPbobsCOM.Items)
 
                         If vItem.GetByKey(oRsActivo.Fields.Item("ItemCode").Value.ToString) = False Then
-                            objGlobal.SBOApp.StatusBar.SetText("(EXO) - No se encuentra el activo fijo """ & oRsActivo.Fields.Item("ItemCode").Value.ToString & """ ", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-                            objGlobal.SBOApp.MessageBox("No se encuentra el activo fijo """ & oRsActivo.Fields.Item("ItemCode").Value.ToString & """ ")
+                            Dim sMensaje = "No se encuentra el activo fijo """ & oRsActivo.Fields.Item("ItemCode").Value.ToString & """ o está inactivo."
+                            objGlobal.SBOApp.StatusBar.SetText("(EXO) - " & sMensaje, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+                            objGlobal.SBOApp.MessageBox(sMensaje)
                             Exit Function
                         Else
                             For p = 0 To vItem.PeriodControls.Count - 1
